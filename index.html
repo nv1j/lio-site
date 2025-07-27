@@ -1,241 +1,411 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>!Lio Was Here</title>
-  <link rel="icon" type="image/png" href="!Lio.jpg" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: black;
-      font-family: 'Press Start 2P', monospace;
-      color: white;
-      overflow: hidden;
-      position: relative;
-    }
-    #entry-screen {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      text-shadow: 0 0 10px rgb(132, 0, 255), 0 0 5px rgb(153, 0, 255);
-      font-size: 1.5em;
-      user-select: none;
-      background: black;
-      z-index: 10000;
-    }
-    #main-content {
-      display: none;
-      animation: fadeIn 2s ease forwards;
-    }
-    body.show-main #main-content { display: block; }
-    body.show-main #entry-screen { display: none; }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-      z-index: 2;
-    }
-    .glow-img {
-      border: none;
-      box-shadow: none;
-      border-radius: 12px;
-      max-width: 240px;
-      margin-bottom: 25px;
-    }
-    h1 {
-      font-size: 1.2em;
-      text-shadow: 0 0 8px rgb(162, 0, 255), 0 0 3px rgb(132, 0, 255);
-      margin-bottom: 20px;
-    }
-    .volume-slider {
-      margin-top: 10px;
-      width: 200px;
-    }
-    input[type=range] {
-      width: 100%;
-      -webkit-appearance: none;
-      height: 8px;
-      border-radius: 5px;
-      background: linear-gradient(90deg, rgba(153,0,255,1) 0%, rgba(132,0,255,1) 100%);
-      outline: none;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(153,0,255,0.5);
-    }
-    .links {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-    .links a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.75em;
-      transition: 0.3s;
-      text-shadow: 0 0 5px rgb(153, 0, 255);
-    }
-    .links a:hover {
-      color: rgb(140, 0, 255);
-      text-shadow: 0 0 10px rgb(153, 0, 255), 0 0 5px rgb(153, 0, 255);
-    }
-    .links i {
-      margin-right: 8px;
-      color: rgb(140, 0, 255);
-    }
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      width: 5px;
-      height: 5px;
-      background: white;
-      opacity: 0.7;
-      border-radius: 50%;
-      filter: blur(1px);
-      animation: fall linear infinite;
-      z-index: 1;
-    }
-    @keyframes fall {
-      to { transform: translateY(110vh); }
-    }
-    #visit-label {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      color: white;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.8em;
-      text-shadow: 0 0 8px rgb(145, 0, 230), 0 0 3px rgb(145, 0, 230);
-      z-index: 10000;
-      user-select: none;
-      cursor: default;
-    }
-    #audio-visualizer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      z-index: 9999;
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-
-  <div id="entry-screen" onclick="enterSite()">
-    Click To Enter .
-  </div>
-
-  <div id="visit-label">👁️ ...</div>
-
-  <audio id="bg-music" autoplay muted loop>
-    <source src="!Lio.mp3" type="audio/mpeg">
-    متصفحك لا يدعم تشغيل الصوت.
-  </audio>
-
-  <canvas id="audio-visualizer"></canvas>
-
-  <div id="main-content">
-    <div class="container">
-      <img src="!Lio.jpg" alt="!Lio" class="glow-img" />
-      <h1>!Lio</h1>
-      <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
-      <div class="links">
-        <a href="https://github.com/nv1j" target="_blank"><i class="fab fa-github"></i> GitHub nv1j</a>
-        <a href="https://t.me/nv2j2" target="_blank"><i class="fab fa-telegram"></i> Telegram @nv2j2</a>
-        <a href="https://instagram.com/nv2j.2" target="_blank"><i class="fab fa-instagram"></i> Instagram @nv2j.2</a>
-        <a href="https://discord.gg/artt" target="_blank"><i class="fab fa-discord"></i> Discord Art</a>
-      </div>
-    </div>
-  </div>
-
+<html lang="en" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@lio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
   <script>
-    function enterSite() {
-      document.body.classList.add('show-main');
-
-      const audio = document.getElementById('bg-music');
-      const slider = document.getElementById('volume-slider');
-
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      const audioCtx = new AudioCtx();
-      const source = audioCtx.createMediaElementSource(audio);
-      const analyser = audioCtx.createAnalyser();
-      source.connect(analyser);
-      analyser.connect(audioCtx.destination);
-      analyser.fftSize = 256;
-
-      const canvas = document.getElementById('audio-visualizer');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = 120;
-      const bufferLength = analyser.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
-
-      function draw() {
-        requestAnimationFrame(draw);
-        analyser.getByteFrequencyData(dataArray);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const barWidth = (canvas.width / bufferLength) * 1.5;
-        let x = 0;
-        for (let i = 0; i < bufferLength; i++) {
-          const barHeight = dataArray[i];
-          const color = `rgb(${120 + barHeight / 2}, 0, 255)`;
-          ctx.fillStyle = color;
-          ctx.shadowColor = color;
-          ctx.shadowBlur = 15;
-          ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
-          x += barWidth + 1;
-        }
+      function typeWriter(text, i = 0) {
+          if (i < text.length) {
+              document.title = text.substring(0, i + 1);
+              setTimeout(() => typeWriter(text, i + 1), 1000);
+          }
       }
 
-      draw();
-
-      audio.muted = false;
-      audio.volume = slider.value;
-      audio.play().catch(err => console.log("خطأ تشغيل الصوت:", err));
-
-      slider.addEventListener('input', () => {
-        audio.volume = slider.value;
-      });
-
-      const createSnow = () => {
-        const snow = document.createElement("div");
-        snow.classList.add("snowflake");
-        snow.style.left = Math.random() * 100 + "vw";
-        snow.style.animationDuration = (Math.random() * 3 + 3) + "s";
-        document.body.appendChild(snow);
-        setTimeout(() => snow.remove(), 7000);
+      window.onload = function() {
+          const username = '@lio';
+          document.title = '';
+          typeWriter(username);
       };
-      setInterval(createSnow, 150);
-    }
+  </script>
+  <style>
+      :root {
+          --primary-red: #4f3367;
+          --system: #000000;
+          --card-color: rgba(0, 0, 0, 0.6);
+          --white: #1a1a1a;
+          --light-gray: #2d2d2d;
+          --dark: #f1f1f1;
+          --loading-bg: rgb(0, 0, 0);
+          --theme-colors: {
+              default: #4f3367;
+              purple: #9b59b6;
+              blue: #3498db;
+              red: #e74c3c;
+          }
+      }
 
-    fetch("https://script.google.com/macros/s/AKfycbwO4MtdoAvNTB0HpM5iPa97ccGODbHwkf4iSC0NU7PeNk78o2RglVxII6cWaYjz5G03/exec")
-      .then(response => response.text())
-      .then(count => {
-        document.getElementById('visit-label').textContent = '👁️ ' + count;
-      })
-      .catch(() => {
-        document.getElementById('visit-label').textContent = '👁️ N/A';
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+          color: var(--dark);
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          position: relative;
+          background-color: var(--system);
+          overflow-x: hidden;
+      }
+
+      /* Background Image with Overlay */
+      body::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url('/uploads/1753546469437-evil-corp-mr-robot-minimalist-4k-a8-1920x1080.jpg');
+          background-size: cover;
+          background-position: center;
+          filter: blur(4px);
+          z-index: -1;
+          transform: scale(1.0);
+      }
+
+      .navbar {
+          padding: 1rem 2rem;
+          position: fixed;
+          width: 100%;
+          top: 0;
+          z-index: 1000;
+      }
+
+      .navbar-content {
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+  .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+      }
+
+  .logo i {
+  color: #4f3367;
+      }
+
+      main {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          padding: 2rem;
+      }
+
+      .intro-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: var(--system);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          animation: fadeInOut 2.5s ease-in-out forwards;
+      }
+
+      .intro-text {
+          font-family: 'Poppins', sans-serif;
+          font-size: 3rem;
+          font-weight: 600;
+          color: white;
+          opacity: 0;
+          transform: translateY(20px);
+          animation: textFade 2s ease-in-out forwards;
+      }
+
+      @keyframes fadeInOut {
+          0% { opacity: 1; }
+          50% { opacity: 1; }
+          100% { opacity: 0; visibility: hidden; }
+      }
+
+      @keyframes textFade {
+          0% { opacity: 0; transform: translateY(20px); }
+          20% { opacity: 1; transform: translateY(0); }
+          80% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-20px); }
+      }
+
+      .profile-container {
+          width: 100%;
+          max-width: 600px;
+          background-color: rgba(0, 0, 0, 0.6);
+          border-radius: 20px;
+          padding: 2rem;
+          backdrop-filter: blur(10px);
+          margin-top: 80px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      .profile-header {
+          text-align: center;
+          position: relative;
+          margin-bottom: 2rem;
+      }
+
+      /* New Effect Styles */
+      .avatar-container {
+          position: relative;
+          width: 120px;
+          height: 120px;
+          margin: 0 auto 1rem;
+      }
+
+      .profile-avatar {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+          transition: all 0.3s ease;
+          cursor: pointer;
+      }
+
+      .avatar-container:hover .profile-avatar {
+          transform: scale(1.05);
+      }
+
+      .profile-name {
+          font-size: 1.8rem;
+          margin-bottom: 0.5rem;
+      }
+
+      .profile-description {
+          opacity: 0.8;
+          margin-bottom: 1.5rem;
+      }
+
+      .badges-container {
+          display: flex;
+          justify-content: center;
+          gap: 0.8rem;
+          flex-wrap: wrap;
+          margin: 1rem 0;
+          position: relative;
+          z-index: 1;
+      }
+
+      .badge {
+          font-size: 1.1rem;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          cursor: pointer;
+          padding: 8px;
+          z-index: 2;
+      }
+
+      .badge i {
+          color: white;
+      }
+
+      .badge:hover {
+          transform: translateY(-3px);
+      }
+
+      .badge::after {
+          content: attr(data-title);
+          position: absolute;
+          top: -35px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.9);
+          color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 0.8rem;
+          white-space: nowrap;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(5px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          z-index: 100;
+      }
+
+      .badge:hover::after {
+          opacity: 1;
+          visibility: visible;
+      }
+
+      .social-links {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin: 1.5rem 0;
+          padding-bottom: 1.5rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .social-link {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--dark);
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+          transform: translateY(-3px);
+      }
+
+      /* تحديث أنماط الثيم */
+      .theme-default {
+          --current-theme: var(--theme-colors-default);
+      }
+
+      .theme-purple {
+          --current-theme: var(--theme-colors-purple);
+      }
+
+      .theme-blue {
+          --current-theme: var(--theme-colors-blue);
+      }
+
+      .theme-red {
+          --current-theme: var(--theme-colors-red);
+      }
+
+      .profile-container[class*="theme-"] {
+          border-color: var(--current-theme);
+      }
+
+      .profile-container[class*="theme-"] .button {
+          background-color: var(--current-theme);
+      }
+
+      @media (max-width: 768px) {
+          .profile-container {
+              margin: 1rem;
+              padding: 1.5rem;
+          }
+          
+          .navbar {
+              padding: 1rem;
+          }
+      }
+
+      .user-location {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          margin: 0.5rem auto;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.9rem;
+          padding: 8px 15px;
+          background: rgba(3, 3, 3, 0.1);
+          border-radius: 20px;
+          backdrop-filter: blur(5px);
+          width: fit-content;
+      }
+
+      .user-location i {
+          color: #f1f1f1;
+          font-size: 1rem;
+          margin-right: 5px;
+      }
+  </style>
+</head>
+<body style="background-color: rgb(0, 0, 0);">
+  <div class="intro-overlay">
+      <div class="intro-text">@lio</div>
+  </div>
+
+  <main>
+      <div class="profile-container theme-{
+type: 'default',
+profileCard: 'rgba(0, 0, 0, 0.6)',
+backgroundColor: '#000000',
+color: '#4f3367',
+profileBackground: '#000000',
+cardColor: 'rgba(0, 0, 0, 0.6)'
+}" style="background-color: rgba(0, 0, 0, 0.6);">
+          <div class="profile-header">
+              <div class="avatar-container effect-devil">
+                  <img src="/uploads/1753546469108-5773986761402337973.jpg" alt="Profile Avatar" class="profile-avatar">
+              </div>
+              <h1 class="profile-name">Lio</h1>
+              <p class="profile-description">@lio</p>
+              
+              
+                  <div class="user-location">
+                      <i class="fas fa-map-marker-alt"></i>
+                      Russia
+                  </div>
+              
+              <div class="badges-container">
+                  
+                      <div class="badge premium" data-title="Premium">
+                          
+                              <i class="fas fa-star"></i>
+                          
+                      </div>
+                  
+              </div>
+              <p class="profile-description">he=him</p>
+          </div>
+
+          <div class="social-links">
+              
+              
+                  <a href="https://github.com/https://github.com/nv1j" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+              
+              
+                  <a href="https://instagram.com/nv2j.2" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+              
+              
+                  <a href="https://discord.com/users/nv2j" class="social-link" target="_blank"><i class="fab fa-discord"></i></a>
+              
+              
+                  <a href="https://t.me/nv2j.2" class="social-link" target="_blank"><i class="fab fa-telegram"></i></a>
+              
+              
+              
+                  <a href="https://youtube.com/@nv3j" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+              
+              
+              
+          </div>
+      </div>
+  </main>
+  <script>
+      // تطبيق الألوان المخصصة
+      document.addEventListener('DOMContentLoaded', function() {
+          const profileCard = 'rgba(0, 0, 0, 0.6)';
+          const profileBackground = '#000000';
+          
+          if (profileCard) {
+              document.querySelector('.profile-container').style.backgroundColor = profileCard;
+          }
+          
+          if (profileBackground) {
+              document.body.style.backgroundColor = profileBackground;
+          }
       });
   </script>
 
-</body>
-</html>
+</body></html>
