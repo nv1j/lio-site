@@ -328,6 +328,46 @@
           font-size: 1rem;
           margin-right: 5px;
       }
+
+      /* Audio Player Styles */
+      .audio-section {
+          text-align: center;
+          margin-top: 1.5rem;
+          padding-top: 1.5rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .audio-title {
+          color: var(--dark);
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
+      }
+
+      .audio-player {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .audio-player audio {
+          width: 100%;
+          max-width: 300px;
+          height: 40px;
+          border-radius: 20px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+      }
+
+      .audio-player audio::-webkit-media-controls-panel {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 20px;
+      }
+
+      .audio-player audio::-webkit-media-controls-play-button {
+          background: var(--primary-red);
+          border-radius: 50%;
+      }
   </style>
 </head>
 <body style="background-color: rgb(0, 0, 0);">
@@ -359,7 +399,7 @@ cardColor: 'rgba(0, 0, 0, 0.6)'
               
               <div class="badges-container">
                   
-                      <div class="badge Toolsmith" data-title="Toolsmith">
+                      <div class="badge Delepore" data-title="Delepore">
                           
                               <i class="fas fa-star"></i>
                           
@@ -390,13 +430,22 @@ cardColor: 'rgba(0, 0, 0, 0.6)'
               
               
           </div>
+
+           <div class="audio-section">
+               <h3 class="audio-title">Music</h3>
+               <div class="audio-player">
+                   <audio controls autoplay>
+                       <source src="!Lio.mp3" type="audio/mpeg">
+                       Your browser does not support the audio element.
+                   </audio>
+               </div>
+           </div>
       </div>
   </main>
   <script>
-      // تطبيق الألوان المخصصة
       document.addEventListener('DOMContentLoaded', function() {
-          const profileCard = 'rgba(0, 0, 0, 0.6)';
-          const profileBackground = '#000000';
+          const profileCard = 'rgba(0, 0, 0, 0, 0.6)';
+          const profileBackground = '#ffffff';
           
           if (profileCard) {
               document.querySelector('.profile-container').style.backgroundColor = profileCard;
